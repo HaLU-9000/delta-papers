@@ -1,5 +1,7 @@
 # ΔPapers - A Claude Code Skill
 
+[image](example)
+
 研究プロジェクトを登録すると、関連する最新論文を各種ジャーナル、プレプリントサーバーから取得し、Claude が日本語要約と分野動向サマリーを生成して Markdown レポートとして保存・毎朝 Gmail 配信できる Claude Code skillです。
 
 ## 対応プラットフォーム
