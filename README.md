@@ -19,7 +19,7 @@
 macOS / Linux:
 
 ```bash
-git clone <this-repo> ~/.claude/skills/digest
+git clone https://github.com/HaLU-9000/delta-papers ~/.claude/skills/digest
 cd ~/.claude/skills/digest
 cp state/config.example.json state/config.json
 chmod 600 state/config.json
@@ -28,7 +28,7 @@ chmod 600 state/config.json
 Windows (PowerShell):
 
 ```powershell
-git clone <this-repo> $env:USERPROFILE\.claude\skills\digest
+git clone https://github.com/HaLU-9000/delta-papers $env:USERPROFILE\.claude\skills\digest
 cd $env:USERPROFILE\.claude\skills\digest
 Copy-Item state\config.example.json state\config.json
 # chmod 相当は不要。ユーザーフォルダの ACL に依存
