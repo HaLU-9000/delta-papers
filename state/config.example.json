@@ -1,0 +1,10 @@
+{
+  "gmail_user": "you@gmail.com",
+  "gmail_app_password": "xxxx xxxx xxxx xxxx",
+  "to": "you@gmail.com",
+  "report_dir": "~/Documents/digest",
+  "language": "ja",
+  "max_papers_per_source_per_project": 30,
+  "summary_style": "technical",
+  "allowed_senders": []
+}
