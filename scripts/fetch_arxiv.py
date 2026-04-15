@@ -173,7 +173,18 @@ def filter_papers(papers, lookback_hours, keywords, authors_filter):
     return out
 
 
+def _ensure_utf8_std_streams():
+    for stream in (sys.stdout, sys.stderr):
+        enc = getattr(stream, "encoding", None)
+        if enc and enc.lower() != "utf-8":
+            try:
+                stream.reconfigure(encoding="utf-8")
+            except Exception:
+                pass
+
+
 def main():
+    _ensure_utf8_std_streams()
     ap = argparse.ArgumentParser(description="Fetch recent arXiv papers.")
     ap.add_argument("--categories", default="cs.AI,cs.CL,cs.LG",
                     help="Comma-separated arXiv categories (default: cs.AI,cs.CL,cs.LG)")

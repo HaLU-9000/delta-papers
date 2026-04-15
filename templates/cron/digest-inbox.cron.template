@@ -1,0 +1,3 @@
+# BEGIN digest-inbox (managed by scheduler.py)
+*/{INTERVAL_MIN} * * * * /usr/bin/env python3 {HOME}/.claude/skills/digest/scripts/inbox_poll.py --once >> {HOME}/.claude/skills/digest/reports/inbox.log 2>&1
+# END digest-inbox

@@ -64,14 +64,24 @@ STR_FIELDS = {"name", "description"}
 ALL_SETTABLE = LIST_FIELDS | INT_FIELDS | BOOL_FIELDS | STR_FIELDS
 
 
+def _ensure_utf8_std_streams():
+    for stream in (sys.stdout, sys.stderr):
+        enc = getattr(stream, "encoding", None)
+        if enc and enc.lower() != "utf-8":
+            try:
+                stream.reconfigure(encoding="utf-8")
+            except Exception:
+                pass
+
+
 def load_json(path: Path, default):
     if not path.exists():
         return default
-    return json.loads(path.read_text())
+    return json.loads(path.read_text(encoding="utf-8"))
 
 
 def save_json(path: Path, data) -> None:
-    path.write_text(json.dumps(data, ensure_ascii=False, indent=2))
+    path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
 def find_project(projects: list[dict], key: str) -> dict | None:
@@ -323,6 +333,7 @@ def poll_once(cfg: dict, dry_run: bool = False, verbose: bool = False) -> int:
 
 
 def main(argv=None) -> int:
+    _ensure_utf8_std_streams()
     ap = argparse.ArgumentParser()
     ap.add_argument("--once", action="store_true",
                     help="Poll once and exit (default).")

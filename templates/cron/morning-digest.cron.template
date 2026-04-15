@@ -1,0 +1,3 @@
+# BEGIN digest-morning (managed by scheduler.py)
+{MINUTE} {HOUR} * * * {CLAUDE_BIN} -p "/digest run" >> {HOME}/.claude/skills/digest/reports/cron.log 2>&1
+# END digest-morning

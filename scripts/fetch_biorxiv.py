@@ -93,7 +93,18 @@ def _match_authors(paper, needle):
     return any(n in a.lower() for a in paper["authors"])
 
 
+def _ensure_utf8_std_streams():
+    for stream in (sys.stdout, sys.stderr):
+        enc = getattr(stream, "encoding", None)
+        if enc and enc.lower() != "utf-8":
+            try:
+                stream.reconfigure(encoding="utf-8")
+            except Exception:
+                pass
+
+
 def main(argv=None):
+    _ensure_utf8_std_streams()
     p = argparse.ArgumentParser(description="Fetch recent bioRxiv/medRxiv papers.")
     p.add_argument("--server", choices=["biorxiv", "medrxiv"], default="biorxiv")
     p.add_argument("--categories", default="",

@@ -290,7 +290,18 @@ def parse_atom_entry(entry, journal_slug):
     }
 
 
+def _ensure_utf8_std_streams():
+    for stream in (sys.stdout, sys.stderr):
+        enc = getattr(stream, "encoding", None)
+        if enc and enc.lower() != "utf-8":
+            try:
+                stream.reconfigure(encoding="utf-8")
+            except Exception:
+                pass
+
+
 def main():
+    _ensure_utf8_std_streams()
     ap = argparse.ArgumentParser(description="Fetch papers from journal RSS/Atom feeds")
     ap.add_argument("--journals", default="", help="comma-separated journal slugs")
     ap.add_argument("--feed-url", action="append", default=[], help="ad-hoc feed URL (repeatable)")

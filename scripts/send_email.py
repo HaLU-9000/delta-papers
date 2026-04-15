@@ -281,7 +281,18 @@ def build_html(md_text: str) -> str:
     return HTML_TEMPLATE.replace("{HTML}", body)
 
 
+def _ensure_utf8_std_streams():
+    for stream in (sys.stdout, sys.stderr):
+        enc = getattr(stream, "encoding", None)
+        if enc and enc.lower() != "utf-8":
+            try:
+                stream.reconfigure(encoding="utf-8")
+            except Exception:
+                pass
+
+
 def main() -> int:
+    _ensure_utf8_std_streams()
     parser = argparse.ArgumentParser(description="Send a Markdown digest via Gmail SMTP.")
     parser.add_argument("--config", required=True, help="Path to JSON config")
     parser.add_argument("--markdown", required=True, help="Path to Markdown file")
