@@ -1,4 +1,4 @@
-# ΔPapers Morning Digest — Claude Code Skill
+# ΔPapers - A Claude Code Skill
 
 毎朝、登録した研究プロジェクトに関連する最新論文を arXiv / bioRxiv / medRxiv / 各種ジャーナル RSS から取得し、Claude が日本語要約と分野動向サマリーを生成して Markdown レポートとして保存・Gmail 配信する Claude Code skill。
 
