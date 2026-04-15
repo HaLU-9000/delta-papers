@@ -5,7 +5,7 @@
 ## インストール
 
 ```bash
-git clone <this-repo> ~/.claude/skills/digest
+git clone https://github.com/HaLU-9000/delta-papers.git ~/.claude/skills/digest
 cd ~/.claude/skills/digest
 cp state/config.example.json state/config.json
 chmod 600 state/config.json
