@@ -40,20 +40,3 @@ Claude Code 内で:
 /digest enable-inbox 600                   # メール経由でコマンドを受け付け
 ```
 
-## アーキテクチャ
-
-- `scripts/fetch_arxiv.py` / `fetch_biorxiv.py` / `fetch_rss.py` — データソース別のフェッチャ (Python 3 stdlib のみ)
-- `scripts/assemble_report.py` — 取得済み JSON + Claude 生成サマリーから Markdown を verbatim 組み立て (抄録途中切れを防ぐ)
-- `scripts/send_email.py` — Material Design 風 HTML + .md 添付で Gmail 送信
-- `scripts/inbox_poll.py` — IMAP で `/digest <cmd>` メールを受信し設定変更
-- `state/projects.json` — プロジェクト定義 (個人情報のため `.gitignore` 対象)
-- `state/seen_papers.json` — 重複防止用既読 ID
-- `plist/*.plist.template` — launchd テンプレ (`{HOME}` `{LABEL_PREFIX}` 等は実行時置換)
-
-## プライバシー
-
-`state/config.json`, `state/projects.json`, `state/seen_papers.json`, `reports/` は `.gitignore` で除外済み。これらには Gmail App Password・個人プロジェクト情報・読書履歴が含まれます。**絶対にコミットしないでください**。
-
-## ライセンス
-
-MIT (LICENSE 参照、必要に応じて差し替え)
